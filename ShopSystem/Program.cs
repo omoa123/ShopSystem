@@ -10,14 +10,14 @@ namespace ShopSystem
     {
         static void Main(string[] args)
         {
-            string number = null;
+            string inputNumber = null;
 
-            var store = new Store();
-            while (number != "0")
+            var shoppingCart = new ShoppingCart();
+            while (inputNumber != "0")
             {
-                store.PrintIntroduction();
-                store.shoppingCart.AddCartItem(Console.ReadLine());
-                store.PrintAllShoppingItem();
+                shoppingCart.PrintIntroduction();
+                shoppingCart.AddCartItem(inputNumber = Console.ReadLine());
+                shoppingCart.PrintAllShoppingItem();
             }
 
             Console.Write("按下ENTER結束");
