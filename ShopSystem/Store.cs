@@ -11,9 +11,9 @@ namespace ShopSystem
         public void PrintIntroduction()
         {
             Console.Write("請輸入數字:");
-            foreach (var item in shoppingCart.shopItemList)
+            foreach (var item in shoppingCart.SampleList)
             {
-                Console.Write("{1}、Name :{0}", item.id, item.name);
+                Console.Write(" *{0}* :{1} 、", item.id, item.name);
             }
             Console.Write("，  0 結束");
             Console.WriteLine();
@@ -21,10 +21,10 @@ namespace ShopSystem
         
         public void PrintAllShoppingItem()
         {
-            Console.Write("目前商品");
+            Console.Write("目前商品  ");
             foreach (var item in shoppingCart.shopItemList)
             {
-                Console.Write("Name :{0}", item.name);
+                Console.Write("{0}、", item.name);
             }
             Console.WriteLine();
 
@@ -36,10 +36,36 @@ namespace ShopSystem
     public class ShoppingCart
     {
         public List<Product> shopItemList = new List<Product>();
-     
+        
+        public List<Product> SampleList
+        {
+            get
+            {
+                var SampleList = new List<Product>();
+                SampleList.Add(new Product(1, "二手蘋果手機", 8700));
+                SampleList.Add(new Product(2, "C# cookbook", 568));
+                SampleList.Add(new Product(3, "HP 筆電", 16888));
+                return SampleList;
+            }
+        }
+
+        public Product getProductByID(string id)
+        {
+            try
+            {
+                return this.SampleList.FirstOrDefault(i => i.id == int.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void AddCartItem(string type)
         {
-            shopItemList.Add(Product.getProductByID(type));
+            var product = getProductByID(type);
+            if (product != null)
+                shopItemList.Add(getProductByID(type));
         }
     }
 
@@ -50,28 +76,14 @@ namespace ShopSystem
         public string name;
 
         public double price;
-
+        
         public Product(int id, string name, int price)
         {
             this.id = id;
             this.name = name;
             this.price = price;
         }
-
-        static public Product getProductByID(string id)
-        {
-            switch (id)
-            {
-                case "1":
-                    return new Product(1, "二手蘋果手機", 8700);
-                case "2":
-                    return new Product(2, "C# cookbook", 568);
-                case "3":
-                    return new Product(3, "HP 筆電", 16888);
-                default:
-                    return null;
-            }
-        }
+        
     }
 
 }
