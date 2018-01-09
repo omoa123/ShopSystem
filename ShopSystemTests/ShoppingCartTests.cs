@@ -32,7 +32,7 @@ namespace ShopSystem.Tests
         public void AddCartItemTest3()
         {
             var shoppingCart = new ShoppingCart();
-            shoppingCart.AddCartItem("3",2);
+            shoppingCart.AddCartItem("1",3);
             Assert.AreEqual(26100, shoppingCart.GetShopItemSum());
         }
     }
