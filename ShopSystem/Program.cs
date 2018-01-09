@@ -10,17 +10,37 @@ namespace ShopSystem
     {
         static void Main(string[] args)
         {
-            string inputNumber = null;
+            string inputItemNumber = null;
 
             var shoppingCart = new ShoppingCart();
-            while (inputNumber != "0")
+
+            shoppingCart.PrintIntroduction();
+
+            while (inputItemNumber != "0")
             {
-                shoppingCart.PrintIntroduction();
-                shoppingCart.AddCartItem(inputNumber = Console.ReadLine());
+                Console.Write("請輸入數字:\n");
+
+                inputItemNumber = Console.ReadLine();
+                
+                var inputItemCount = -1;
+                while (inputItemCount < 0)
+                {
+                    Console.Write("請選擇數量\n");
+                    var r = Console.ReadLine();
+                    try
+                    {
+                        inputItemCount = int.Parse(r);
+                    }
+                    catch
+                    {
+                        Console.Write("格式錯誤重新輸入\n");
+                    }
+                }
+                shoppingCart.AddCartItem(inputItemNumber, inputItemCount);
                 shoppingCart.PrintAllShoppingItem();
             }
 
-            Console.Write("按下ENTER結束");
+            Console.Write("按下ENTER結束\n");
             Console.ReadLine();
         }
     }

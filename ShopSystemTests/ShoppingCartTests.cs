@@ -27,5 +27,13 @@ namespace ShopSystem.Tests
             shoppingCart.AddCartItem("3");
             Assert.AreEqual(17456, shoppingCart.GetShopItemSum());
         }
+
+        [TestMethod()]
+        public void AddCartItemTest3()
+        {
+            var shoppingCart = new ShoppingCart();
+            shoppingCart.AddCartItem("3",2);
+            Assert.AreEqual(26100, shoppingCart.GetShopItemSum());
+        }
     }
 }
