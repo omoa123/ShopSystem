@@ -30,7 +30,7 @@ namespace ShopSystem.Controller
             foreach (var Sample in SampleList)
             {
                 var item = Sample.Value;
-                Console.Write(" *{0}* :{1} {2} {3}\n", item.Id, _getStoreById.Invoke(item.StoreID).Name, item.Name, item.Price);
+                Console.Write(" *{0}* :{1} {2}\t{3}\n", item.Id, _getStoreById.Invoke(item.StoreId).Name, item.Name, item.Price);
             }
             Console.Write(" *0*  結束\n");
         }
@@ -54,7 +54,8 @@ namespace ShopSystem.Controller
             {
                 var item = Sampleitem.Value;
                 var count = _shopItemIdList.Count(i => i == item.Id.ToString());
-                Console.Write("{0} 數量:{1} \n", item.Name, count);
+                Console.Write(" *{0}* :{1} {2}\t{3} \n", item.Id, _getStoreById.Invoke(item.StoreId).Name, item.Name, count);
+                //Console.Write("{0} 數量:{1} \n", item.Name, count);
             }
 
             Console.Write("目前商品總金額 :{0}\n", GetShopItemSum());

@@ -9,8 +9,8 @@ namespace ShopSystem.Model
         public string Name;
         public Store(int id, string name)
         {
-            this.Id = id;
-            this.Name = name;
+            Id = id;
+            Name = name;
         }
     }
 }

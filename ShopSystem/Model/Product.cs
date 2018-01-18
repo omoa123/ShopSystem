@@ -6,18 +6,18 @@ namespace ShopSystem.Model
     {
         public int Id;
 
-        public int StoreID;
+        public int StoreId;
 
         public string Name;
 
         public double Price;
 
-        public Product(int id, string name, int price, int storeID)
+        public Product(int id, string name, int price, int storeId)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Price = price;
-            this.StoreID = storeID;
+            Id = id;
+            Name = name;
+            Price = price;
+            StoreId = storeId;
         }
     }
 }

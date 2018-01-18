@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ShopSystem.Model;
-
 namespace ShopSystem.Controller
 {
     public class StoreManagement
     {
         private Dictionary<int, Store> _storeList;
-
-
+        
         public StoreManagement(Dictionary<int, Store> storeList)
         {
             _storeList = storeList;
         }
-
 
         public Store GetStoreByID(int storeid)
         {
@@ -26,6 +23,5 @@ namespace ShopSystem.Controller
                 return null;
             }
         }
-
     }
 }
