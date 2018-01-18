@@ -1,37 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ShopSystem.Model;
 
-namespace ShopSystem
+namespace ShopSystem.Controller
 {
     public class ShoppingCart
     {
-        private List<string> shopItemIDList = new List<string>();
+        private List<string> _shopItemIdList = new List<string>();
+        
+        public Dictionary<int, Product> SampleList { get; set; }
 
-        private Dictionary<int, Product> _SampleList;
-        public Dictionary<int, Product> SampleList
+        public delegate Product GetProductById(string id);
+        private GetProductById _getProductById;
+
+        public delegate Store GetStoreById(int storeid);
+        private GetStoreById _getStoreById;
+
+        public ShoppingCart(Dictionary<int, Product> sampleList, GetStoreById getStoreById, GetProductById getProductById)
         {
-            get
-            {
-                return _SampleList;
-            }
-            set
-            {
-                _SampleList = value;
-            }
-        }
-
-        public delegate Product GetProductByID(string id);
-        private GetProductByID _GetProductByID;
-
-        public delegate Store GetStoreByID(int storeid);
-        private GetStoreByID _GetStoreByID;
-
-        public ShoppingCart(Dictionary<int, Product> SampleList, GetStoreByID GetStoreByID, GetProductByID GetProductByID)
-        {
-            _SampleList = SampleList;
-            _GetStoreByID = GetStoreByID;
-            _GetProductByID = GetProductByID;
+            SampleList = sampleList;
+            _getStoreById = getStoreById;
+            _getProductById = getProductById;
         }
 
         public void PrintIntroduction()
@@ -40,7 +30,7 @@ namespace ShopSystem
             foreach (var Sample in SampleList)
             {
                 var item = Sample.Value;
-                Console.Write(" *{0}* :{1} {2} {3}\n", item.Id, _GetStoreByID.Invoke(item.StoreID).Name, item.Name, item.Price);
+                Console.Write(" *{0}* :{1} {2} {3}\n", item.Id, _getStoreById.Invoke(item.StoreID).Name, item.Name, item.Price);
             }
             Console.Write(" *0*  結束\n");
         }
@@ -48,9 +38,9 @@ namespace ShopSystem
         public double GetShopItemSum()
         {
             var sum = 0.0;
-            foreach (var itemID in shopItemIDList)
+            foreach (var itemId in _shopItemIdList)
             {
-                var item = _GetProductByID.Invoke(itemID);
+                var item = _getProductById.Invoke(itemId);
                 if (item != null)
                     sum += item.Price;
             }
@@ -63,7 +53,7 @@ namespace ShopSystem
             foreach (var Sampleitem in SampleList)
             {
                 var item = Sampleitem.Value;
-                var count = shopItemIDList.Count(i => i == item.Id.ToString());
+                var count = _shopItemIdList.Count(i => i == item.Id.ToString());
                 Console.Write("{0} 數量:{1} \n", item.Name, count);
             }
 
@@ -72,9 +62,9 @@ namespace ShopSystem
 
         public void AddCartItem(string type)
         {
-            var product = _GetProductByID.Invoke(type);
+            var product = _getProductById.Invoke(type);
             if (product != null)
-                shopItemIDList.Add(type);
+                _shopItemIdList.Add(type);
         }
 
         public void AddCartItem(string type ,int count)

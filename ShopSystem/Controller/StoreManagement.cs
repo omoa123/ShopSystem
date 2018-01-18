@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ShopSystem.Model;
 
-namespace ShopSystem
+namespace ShopSystem.Controller
 {
     public class StoreManagement
     {
-        private Dictionary<int, Store> _StoreList;
+        private Dictionary<int, Store> _storeList;
 
 
-        public StoreManagement(Dictionary<int, Store> StoreList)
+        public StoreManagement(Dictionary<int, Store> storeList)
         {
-            _StoreList = StoreList;
+            _storeList = storeList;
         }
 
 
@@ -18,7 +19,7 @@ namespace ShopSystem
         {
             try
             {
-                return _StoreList.FirstOrDefault(i => i.Key == storeid).Value;
+                return _storeList.FirstOrDefault(i => i.Key == storeid).Value;
             }
             catch
             {

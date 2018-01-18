@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace ShopSystem
+namespace ShopSystem.Model
 {
     public class Product
     {

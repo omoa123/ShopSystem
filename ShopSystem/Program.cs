@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShopSystem.Model;
+using ShopSystem.Controller;
 
 namespace ShopSystem
 {
@@ -25,7 +27,7 @@ namespace ShopSystem
             SampleList.Add(5, new Product(5, "無間道三部曲", 1090, 2));
 
             var ProductManagement = new ProductManagement(SampleList);
-            var shoppingCart = new ShoppingCart(SampleList, StoreManagement.GetStoreByID, ProductManagement.GetProductByID);
+            var shoppingCart = new ShoppingCart(SampleList, StoreManagement.GetStoreByID, ProductManagement.GetProductById);
 
             shoppingCart.PrintIntroduction();
 
@@ -37,7 +39,7 @@ namespace ShopSystem
                 if (inputItemNumber == "0")
                     break;
 
-                var product = ProductManagement.GetProductByID(inputItemNumber);
+                var product = ProductManagement.GetProductById(inputItemNumber);
                 if (product != null)
                 {
                     var inputItemCount = -1;
