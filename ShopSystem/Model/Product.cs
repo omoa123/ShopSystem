@@ -6,11 +6,11 @@ namespace ShopSystem.Model
     {
         public int Id;
 
-        public int StoreId;
-
         public string Name;
 
         public double Price;
+
+        public int StoreId;
 
         public Product(int id, string name, int price, int storeId)
         {

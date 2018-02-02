@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ShipmentManagement.cs" />
+    <Compile Include="Controller\PromotionManagement.cs" />
+    <Compile Include="Model\CartItem.cs" />
+    <Compile Include="Model\Shipment.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Controller\ProductManagement.cs" />
     <Compile Include="Program.cs" />
@@ -49,6 +53,7 @@
     <Compile Include="Controller\ShoppingCart.cs" />
     <Compile Include="Model\Store.cs" />
     <Compile Include="Controller\StoreManagement.cs" />
+    <Compile Include="Utils\Store.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

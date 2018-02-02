@@ -4,16 +4,16 @@ using ShopSystem.Model;
 
 namespace ShopSystem.Controller
 {
-    public class ProductManagement
+    public class ShipmentManagement
     {
-        public Dictionary<int, Product> SampleList { get; set; }
+        public Dictionary<int, Shipment> SampleList { get; set; }
 
-        public ProductManagement(Dictionary<int, Product> sampleList)
+        public ShipmentManagement(Dictionary<int, Shipment> sampleList)
         {
             SampleList = sampleList;
         }
         
-        public Product GetProductById(int id)
+        public Shipment GetShipmentById(int id)
         {
             try
             {
